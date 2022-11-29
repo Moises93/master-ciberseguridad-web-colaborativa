@@ -13,6 +13,12 @@
             }
         });
 
+        function validPassword(str)
+        {
+              var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+              return re.test(str);
+        }
+        
         function validateForm() {
             var username = document.forms["reg-form"]["username"].value;
             if (username == "") {
@@ -21,17 +27,17 @@
             }
 
             var password = document.forms["reg-form"]["password"].value;
-            if (password == "") {
-                alert("Both passwords must be filled out");
+            if (!validPassword(password)) {
+                alert("Invalid Password. Must have min 8 charecter and  symbol / number");
                 return false;
             }
 
             var password2 = document.forms["reg-form"]["passwordCheck"].value;
-            if (password2 == "") {
-                alert("Both passwords must be filled out");
+            if (!validPassword(password2)) {
+                alert("Invalid Password. Must have min 8 charecter and  symbol / number");
                 return false;
             }
-
+   
             if (password != password2) {
                 alert("Both passwords should be the same");
                 return false;
